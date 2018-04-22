@@ -3,6 +3,7 @@ build_cmake/
 code-build/
 Testing/
 dashboard/
+sln/
 
 *.user
 
