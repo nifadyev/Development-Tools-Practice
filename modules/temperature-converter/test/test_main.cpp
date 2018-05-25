@@ -1,4 +1,4 @@
-// Copyright 2018 Bederdinov Daniil
+// Copyright 2018 Nifadyev Vadim
 
 #include <gtest/gtest.h>
 

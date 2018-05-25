@@ -1,17 +1,16 @@
-// Copyright 2018 Bederdinov Daniil
+// Copyright 2018 Nifadyev Vadim
 
 #include <gtest/gtest.h>
 
 #include "include/temperature_converter.h"
 
 TEST(Temperature_Converter_Test, Can_Create_Object) {
-    // Assert
-    TemperatureConverter temp(-7.0, 'K');
+    // Arrang & Act & Assert
     ASSERT_NO_THROW(TemperatureConverter temp(-7.0, 'K'));
 }
 
 TEST(Temperature_Converter_Test, Cannot_Create_Object_With_Wrong_Scale) {
-    // Assert
+    // Arrang & Act & Assert
     ASSERT_ANY_THROW(TemperatureConverter temp(-7, 'p'));
 }
 

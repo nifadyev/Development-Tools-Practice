@@ -1,0 +1,84 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a temperature calculator"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} 15 'C'
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be 3 arguments."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Temperature_Format
+    COMMAND ${APPLICATION} 126C 'F' 'C'
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Temperature_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong number format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Scale_Format
+    COMMAND ${APPLICATION} 126 A C
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Scale_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong scale format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Convert_Celsius_To_Fahrenheit
+    COMMAND ${APPLICATION} 30 C F
+)
+set_tests_properties (${prefix}_can_Convert_Celsius_To_Fahrenheit PROPERTIES
+    PASS_REGULAR_EXPRESSION "Converted temperature = 86 Scale = F"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Convert_Fahrenheit_To_Celsius
+    COMMAND ${APPLICATION} 140 F C
+)
+set_tests_properties (${prefix}_can_Convert_Fahrenheit_To_Celsius PROPERTIES
+    PASS_REGULAR_EXPRESSION "Converted temperature = 60 Scale = C"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Convert_Kelvin_To_Fahrenheit
+    COMMAND ${APPLICATION} 513.15 K F
+)
+set_tests_properties (${prefix}_can_Convert_Kelvin_To_Fahrenheit PROPERTIES
+    PASS_REGULAR_EXPRESSION "Converted temperature = 464 Scale = F"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Convert_Fahrenheit_To_Kelvin
+    COMMAND ${APPLICATION} 41 F K
+)
+set_tests_properties (${prefix}_can_Convert_Fahrenheit_To_Kelvin PROPERTIES
+    PASS_REGULAR_EXPRESSION "Converted temperature = 278.15 Scale = K"
+    LABELS "${MODULE}")
+    
+add_test(
+    NAME ${prefix}_can_Convert_Celsius_To_Newton
+    COMMAND ${APPLICATION} 159 C N
+)
+set_tests_properties (${prefix}_can_Convert_Celsius_To_Newton PROPERTIES
+    PASS_REGULAR_EXPRESSION "Converted temperature = 52.47 Scale = N"
+    LABELS "${MODULE}")

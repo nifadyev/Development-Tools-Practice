@@ -1,4 +1,4 @@
-// Copyright 2018 Bederdinov Daniil
+// Copyright 2018 Nifadyev Vadim
 
 #include "include/temperature_converter.h"
 
@@ -6,10 +6,11 @@ TemperatureConverter::TemperatureConverter(double current_temperature_,
     char current_scale_) {
     current_temperature = current_temperature_;
     if (current_scale_ == 'C' || current_scale_ == 'K' ||
-        current_scale_ == 'F' || current_scale_ == 'N')
-        current_scale = current_scale_;
-    else
-        throw("Incorrect temperature scale");
+        current_scale_ == 'F' || current_scale_ == 'N') {
+            current_scale = current_scale_;
+        } else {
+            throw("Incorrect temperature scale");
+        }
 }
 
 TemperatureConverter & TemperatureConverter::operator=
@@ -19,17 +20,14 @@ TemperatureConverter & TemperatureConverter::operator=
         current_scale = temp.current_scale;
         current_temperature = temp.current_temperature;
     }
+
     return *this;
 }
 
 double TemperatureConverter::getCurrentTemperature() {
     return this->current_temperature;
 }
-/*
-void TemperatureConverter::setCurrentTemperature(double current_temperature_) {
-    current_temperature = current_temperature_;
-}
-*/
+
 TemperatureConverter TemperatureConverter::convert
 (TemperatureConverter temperature, char new_scale) {
     if (temperature.current_scale == 'K') {
@@ -49,6 +47,7 @@ TemperatureConverter TemperatureConverter::convert
                 throw("Incorrect new temperature scale");
             break;
         }
+
         temperature.current_scale = new_scale;
         return temperature;
     } else if (temperature.current_scale == 'C') {
@@ -68,6 +67,7 @@ TemperatureConverter TemperatureConverter::convert
             throw("Incorrect new temperature scale");
             break;
         }
+
         temperature.current_scale = new_scale;
         return temperature;
        } else if (temperature.current_scale == 'F') {
@@ -88,6 +88,7 @@ TemperatureConverter TemperatureConverter::convert
             throw("Incorrect new temperature scale");
             break;
         }
+
         temperature.current_scale = new_scale;
         return temperature;
     } else {
@@ -107,6 +108,7 @@ TemperatureConverter TemperatureConverter::convert
             throw("Incorrect new temperature scale");
             break;
         }
+
         temperature.current_scale = new_scale;
         return temperature;
     }
